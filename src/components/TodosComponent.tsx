@@ -1,20 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TodoItem } from '../store/todos/types';
 import TodosItem from './item/TodosItem';
 
-function TodosComponent() {
+type Props = {
+    todos: TodoItem[];
+    onInsert: () => void;
+    onDelete: (idx: number) => void;
+    onUpdate: (idx: number) => void;
+    content: string;
+    onChangeContent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function TodosComponent(props: Props) {
     return <TodosBlock>
         <TodosHeader>
             Redux Todos
         </TodosHeader>
         <TodosBody>
-            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((item, idx) => 
-                <TodosItem key={idx} />
+            {props.todos.map((item, idx) => 
+                <TodosItem 
+                    todo={item}
+                    idx={idx}
+                    key={idx} 
+                    onDelete={props.onDelete}
+                    />
             )}
         </TodosBody>
         <TodosFooter>
-            <input type="text" placeholder="할 일을 입력해주세요." />
-            <button type="button">Save</button>
+            <input type="text" placeholder="할 일을 입력해주세요." onChange={props.onChangeContent} value={props.content}/>
+            <button type="button" onClick={props.onInsert}>Save</button>
         </TodosFooter>
     </TodosBlock>
 }
@@ -58,7 +73,6 @@ const TodosFooter = styled.div`
 
     display: flex;
 
-
     & > input {
         flex: 7;
 
@@ -78,6 +92,8 @@ const TodosFooter = styled.div`
         background-color: #000;
 
         border-end-end-radius: 1rem;
+
+        cursor: pointer;
     }
 `;
 
