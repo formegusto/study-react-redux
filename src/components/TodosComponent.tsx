@@ -64,6 +64,9 @@ const TodosFooter = styled.div`
 
         border: none;
         margin: 1rem 0;
+
+        padding: 0 .5rem;
+        box-sizing: border-box;
     }
 
     & > button {
