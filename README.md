@@ -1,16 +1,10 @@
 # Redux Study
 
-===
-
 # Contents
-
-===
 
 - 나중에 목차 올거임
 
 # Concept
-
-===
 
 0. React + Redux는 상태관리를 하는 전용 장소(=store) 에서 상태를 관리하고,
    React 컴포넌트는 그걸 보여주기만 하는 용도.
@@ -24,8 +18,6 @@
      새로운 것이 합성되는 것 철머 쓰여진다.
 
 # Pure Component & Connected Component
-
-===
 
 - React의 Component 자체는 Redux의 흐름에 타는 것에 불과하고,
   흐름을 타기 위해서는 connect 라고 불리는 함수를 이용한다.
