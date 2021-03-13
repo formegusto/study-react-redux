@@ -1,15 +1,15 @@
-import { CounterReturnType } from "./actions";
+import { CounterActions } from "./actions";
 import { CounterStore, counterStore } from "./store";
-import { DECREAMENT, INCREAMENT } from "./types";
+import { DECREMENT, INCREMENT } from "./types";
 
-export default function counter(state : CounterStore = counterStore, action : CounterReturnType) {
+export default function counter(state : CounterStore = counterStore, action : CounterActions) {
     switch(action.type) {
-        case INCREAMENT :
+        case INCREMENT :
             return {
                 ...state,
                 number: state.number + 1
             };
-        case DECREAMENT :
+        case DECREMENT :
             return {
                 ...state,
                 number: state.number - 1

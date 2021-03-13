@@ -1,17 +1,11 @@
-import { DECREAMENT, INCREAMENT } from "./types"
+import { DECREMENT, INCREMENT } from "./types"
 
-export const increament = () => ({ type : INCREAMENT });
-export const decreament = () => ({ type : DECREAMENT });
-export const counterActions: CounterActions = {
-    increament: () => ({ type : INCREAMENT }),
-    decreament: () => ({ type : DECREAMENT }),
+export const counterActions = {
+    increment: () => ({ type : INCREMENT }),
+    decrement: () => ({ type : DECREMENT }),
 }
 
-export type CounterReturnType = {
-    type: string;
-}
+type INCREMENT_ACTION = ReturnType<typeof counterActions.increment>;
+type DECREMENT_ACTION = ReturnType<typeof counterActions.decrement>;
 
-export type CounterActions = {
-    increament: () => CounterReturnType,
-    decreament: () => CounterReturnType,
-}
+export type CounterActions = INCREMENT_ACTION | DECREMENT_ACTION;

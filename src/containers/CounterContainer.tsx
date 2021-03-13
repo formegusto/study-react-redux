@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CounterComponent from '../components/CounterComponent';
 import { RootStore } from '../store';
-import { counterActions, CounterReturnType } from '../store/counter/actions';
+import { counterActions } from '../store/counter/actions';
 
 type Props = {
     number: number;
-    increament: () => CounterReturnType,
-    decreament: () => CounterReturnType,
+    CounterActions: typeof counterActions
 }
 
 function CounterContainer(props: Props) {
+    const onIncrement = useCallback(() => {
+        props.CounterActions.increment();
+    }, [props.CounterActions]);
+    
+    const onDecrement = useCallback(() => {
+        props.CounterActions.decrement();
+    }, [props.CounterActions]);
+
     return <CounterComponent 
         number={props.number}
-        increament={props.increament}
-        decreament={props.decreament}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
     />
 }
 
 export default connect(
     ({counter}: RootStore) => ({number: counter.number}),
-    (dispatch) => bindActionCreators(counterActions, dispatch)
+    (dispatch) => ({CounterActions : bindActionCreators(counterActions, dispatch)})
 )(CounterContainer);

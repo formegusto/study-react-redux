@@ -1,18 +1,17 @@
 import React  from 'react';
-import { CounterReturnType } from '../store/counter/actions';
 
 type Props = {
     number: number;
-    increament: () => CounterReturnType,
-    decreament: () => CounterReturnType,
+    onIncrement: () => void;
+    onDecrement: () => void;
 }
 
 function CounterComponent(props: Props) {
     return (
         <>
             <h1>{props.number}</h1>
-            <button onClick={props.increament}>+</button>
-            <button onClick={props.decreament}>-</button>
+            <button onClick={props.onIncrement}>+</button>
+            <button onClick={props.onDecrement}>-</button>
         </>
     );
 }
