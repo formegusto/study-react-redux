@@ -18,7 +18,13 @@ export default function TodoReducer(state: TodoStore = todoStore, action: TodoAc
                 todos: state.todos.filter((todo, idx) => idx !== (action.payload as number))
             };
         case TODO_UPDATE :
-            return state;
+            return {
+                ...state,
+                todos: state.todos.map((todo, idx) => idx !== (action.payload as number) ? todo : {
+                    ...todo,
+                    isCheck: !todo.isCheck
+                })
+            };
         default:
             return state;
     }

@@ -23,6 +23,8 @@ function TodosContainer(props: Props) {
             content: content,
             isCheck: false
         });
+
+        setContent('');
     }, [props.TodoActions, content]);
 
     const onDelete = useCallback((idx: number) => {

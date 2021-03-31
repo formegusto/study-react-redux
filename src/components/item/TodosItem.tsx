@@ -7,12 +7,17 @@ type Props = {
     idx: number;
     todo: TodoItem;
     onDelete: (idx:number) => void;
+    onUpdate: (idx:number) => void;
 }
 
 function TodosItem(props: Props) {
     return <ItemBlock>
         <div>{props.idx}</div>
-        <div>{props.todo.content}</div>
+        <div 
+            onClick={() => props.onUpdate(props.idx)} 
+            style={{textDecoration: props.todo.isCheck ? "line-through" : ""}}>
+                {props.todo.content}
+        </div>
         <div onClick={() => props.onDelete(props.idx)}><FiDelete size={32}/></div>
     </ItemBlock>
 }
@@ -37,6 +42,7 @@ const ItemBlock = styled.div`
     /* 내용 */
     & > div:nth-child(2) {
         flex: 8;
+        cursor: pointer;
     }
 
     /* 삭제 버튼 */

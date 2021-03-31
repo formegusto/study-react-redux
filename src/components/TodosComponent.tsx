@@ -24,6 +24,7 @@ function TodosComponent(props: Props) {
                     idx={idx}
                     key={idx} 
                     onDelete={props.onDelete}
+                    onUpdate={props.onUpdate}
                     />
             )}
         </TodosBody>
